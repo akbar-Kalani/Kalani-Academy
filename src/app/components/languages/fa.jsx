@@ -11,7 +11,7 @@ export default {
   female: " زن",
   male: "مرد",
   submit: "ارسال",
-  decri: 'اگر دارید توضیحات',
+  decri: 'اگر دارین توضیح بدین؟',
   countries: {
     Afghanistan: "افغانستان",
     Australia: "استرالیا",

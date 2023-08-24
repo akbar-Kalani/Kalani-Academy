@@ -22,9 +22,9 @@ export const RegisterforClass = () => {
         male: false,
         yes: false,
     };
-    
+
     const [data, setData] = useState(initialFormData);
-    
+
     const [errors, setErrors] = useState({})
     console.log("hassn", data);
 
@@ -97,7 +97,7 @@ export const RegisterforClass = () => {
     return (
         <div>
 
-            <div className="login-box p-4 w-[700px]">
+            <div className="login-box p-4 w-full md:w-[700px]">
                 <select
                     onChange={(e) => {
                         setLang(e.target.value);
@@ -112,7 +112,7 @@ export const RegisterforClass = () => {
                 <form
                     onSubmit={handleSubmit}
                     className='flex flex-wrap justify-evenly  w-full' >
-                    <div className="user-box box-input my-3 w-[48%]">
+                    <div className="user-box box-input my-3 max-sm:w-full md:w-[48%]">
                         <label className=" px-2  text-white pointer-events-none transition-all">
                             {localize(lang, 'name')}
                         </label>
@@ -127,7 +127,7 @@ export const RegisterforClass = () => {
                         />
                         {errors.name && focus.name && <span className='formField' >{errors.name}</span>}
                     </div>
-                    <div className="user-box box-input my-3 w-[48%]">
+                    <div className="user-box box-input my-3 max-sm:w-full md:w-[48%]">
                         <label className=" px-2  text-white pointer-events-none transition-all">
                             {localize(lang, 'lastName')}
                         </label>
@@ -141,7 +141,7 @@ export const RegisterforClass = () => {
                         {errors.lastName && focus.lastName && <span className='formField' >{errors.lastName}</span>}
                     </div>
 
-                    <div className="user-box box-input my-3 w-[48%]">
+                    <div className="user-box box-input my-3 max-sm:w-full md:w-[48%]">
                         <label className=" px-2 text-white pointer-events-none transition-all">
                             {localize(lang, 'email')}
                         </label>
@@ -160,7 +160,7 @@ export const RegisterforClass = () => {
 
                     </div>
 
-                    <div className="user-box box-input my-3 w-[48%]">
+                    <div className="user-box box-input my-3 max-sm:w-full md:w-[48%]">
                         <label className=" px-2 text-white pointer-events-none transition-all">
                             {localize(lang, 'telegram')}</label>
                         <input type="text"
@@ -191,7 +191,7 @@ export const RegisterforClass = () => {
                                 </option>
                             ))}
                         </select>
-                    
+
                         {!data.country || data.country.trim() === '' ? (
                             <span className='formField'>country is required</span>
                         ) : null}
@@ -207,7 +207,7 @@ export const RegisterforClass = () => {
                             value={data.male} name="male"
                             className="  text-white  border-b border-white outline-none   bg-transparent"
                             onChange={onchangeHandler} />
-                            {errors.male && focus.male && <span className=' ms-4 formField' >{errors.male}</span>} 
+                        {errors.male && focus.male && <span className=' ms-4 formField' >{errors.male}</span>}
                     </div>
                     <div className="user-box my-3 w-[48%]">
                         <label className=" px-2 text-white pointer-events-none transition-all">
@@ -217,7 +217,7 @@ export const RegisterforClass = () => {
                             name="female" value={data.female}
                             className="  text-white  border-b border-white outline-none   bg-transparent"
                             onChange={onchangeHandler} />
-                                  {errors.female && focus.female && <span className=' ms-4 formField' >{errors.female}</span>} 
+                        {errors.female && focus.female && <span className=' ms-4 formField' >{errors.female}</span>}
 
                     </div>
 

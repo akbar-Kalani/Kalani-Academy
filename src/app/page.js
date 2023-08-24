@@ -4,7 +4,7 @@ import { RegisterforClass } from './components/registerFromClass/registerforClas
 export default function Home() {
    
   return (
-    <main className="flex min-h-screen justify-center  items-center  ">
+    <main className="flex min-h-screen justify-center  mt-7  ">
        <RegisterforClass/>
     </main>
   )
