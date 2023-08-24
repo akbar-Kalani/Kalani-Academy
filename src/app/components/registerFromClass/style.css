@@ -1,0 +1,31 @@
+
+
+
+
+.box-input{
+    position: relative;
+}
+.box-input>  label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 0px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+  .login-box .box-input.focused label,
+  .login-box .box-input input:focus ~ label,
+  .login-box .box-input input:valid ~ label {
+    top: -15px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+  }
+
+
+  .formField{
+    color: red;
+  }
+  
