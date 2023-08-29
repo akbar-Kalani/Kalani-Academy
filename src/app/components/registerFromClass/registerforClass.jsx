@@ -2,13 +2,16 @@
 "use client"
 
 import Image from 'next/image'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react'
 import React from 'react'
 import "./style.css"
 import { localize } from './../translate/Translation'
 import { Validation } from './validation'
-
+///import sgMail from '@sendgrid/mail';
 export const RegisterforClass = () => {
+
     const [focus, setFocus] = useState({})
     const [lang, setLang] = useState('en');
     const initialFormData = {
@@ -24,9 +27,8 @@ export const RegisterforClass = () => {
     };
 
     const [data, setData] = useState(initialFormData);
-
+    // console.log("length",Object.keys(data).length)
     const [errors, setErrors] = useState({})
-    console.log("hassn", data);
 
 
 
@@ -42,50 +44,54 @@ export const RegisterforClass = () => {
         setErrors(Validation(data));
     }, [data]);
 
+
+
+    //  const sgMail = require('@sendgrid/mail'); 
+    //sgMail.setApiKey('YOUR_SENDGRID_API_KEY'); 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('Form data:', data);
 
-        try {
-            const response = await fetch('https://64cfe80affcda80aff52489d.mockapi.io/userData', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data) // Assuming 'data' contains your form data
-            });
-            if (Object.keys(errors).length === 0) {
-
-
-            } else {
-
-                setFocus({
-                    name: true,
-                    lastName: true,
-                    email: true,
-                    phone: true,
-                    male: true,
-                    female: true,
-                    telegramId: true,
-                    country: true,
-                    programming: true,
-
+        if (Object.keys(data).length === 0) {
+            console.log("Form data is empty");
+        } else {
+            try {
+                const response = await fetch('https://64cfe80affcda80aff52489d.mockapi.io/userData', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
                 });
-            }
-            if (response.ok) {
 
-                setData(initialFormData); // Reset the form data
-            } else {
-                console.error('Failed to save data');
+                if (response.ok) {
+                    console.log("Data successfully sent to the API");
+
+                 /*    const msg = {
+                        to: 'user@example.com', // Replace with the user's email address
+                        from: 'your@example.com', // Replace with your email address
+                        subject: 'Registration Successful',
+                        text: 'Thank you for registering!',
+                        html: '<strong>Thank you for registering!</strong>',
+                    };
+
+                    await sgMail.send(msg);
+ */
+                    setData(initialFormData);
+                } else {
+                    console.log("Failed to send data to the API");
+                    // Handle error cases
+                }
+            } catch (error) {
+                console.error("An error occurred:", error);
             }
-        } catch (error) {
-            console.error('An error occurred:', error);
         }
     };
 
 
-    const focusHandler = (e) => {
-        e.target.parentNode.classList.add('focused');
+
+    const focusHandler = (event) => {
+        event.target.parentNode.classList.add('focused');
         setFocus({ ...focus, [event.target.name]: true });
     };
 
@@ -96,7 +102,9 @@ export const RegisterforClass = () => {
     }
     return (
         <div>
-
+            <h1 className='text-3xl text-white font-bold text-center py-4'>
+                {localize(lang, 'wel')}
+            </h1>
             <div className="login-box p-4 w-full md:w-[700px]">
                 <select
                     onChange={(e) => {
@@ -207,7 +215,7 @@ export const RegisterforClass = () => {
                             value={data.male} name="male"
                             className="  text-white  border-b border-white outline-none   bg-transparent"
                             onChange={onchangeHandler} />
-                        {errors.male && focus.male && <span className=' ms-4 formField' >{errors.male}</span>}
+                        {/*   {errors.male && focus.male && <span className=' ms-4 formField' >{errors.male}</span>} */}
                     </div>
                     <div className="user-box my-3 w-[48%]">
                         <label className=" px-2 text-white pointer-events-none transition-all">
@@ -217,7 +225,7 @@ export const RegisterforClass = () => {
                             name="female" value={data.female}
                             className="  text-white  border-b border-white outline-none   bg-transparent"
                             onChange={onchangeHandler} />
-                        {errors.female && focus.female && <span className=' ms-4 formField' >{errors.female}</span>}
+                        {/*  {errors.female && focus.female && <span className=' ms-4 formField' >{errors.female}</span>} */}
 
                     </div>
 
@@ -248,16 +256,21 @@ export const RegisterforClass = () => {
                             ></textarea>
                         </div>
                     )}
-                    <button className="relative mt-3 bg-emerald-300 rounded-lg w-[200px] inline-block py-2 px-4 text-black text-uppercase text-center overflow-hidden transition-all transform hover:bg-blue-950 hover:text-white hover:shadow-md hover:rounded-md hover:scale-105">
+                    <button className="relative outline-none mt-5 bg-bg-blue-950 rounded-lg w-[200px] inline-block py-2 px-4 text-white text-uppercase text-center overflow-hidden transition-all transform hover:bg-emerald-700 hover:text-white hover:shadow-md hover:rounded-md hover:scale-105">
                         <span className=" animate-btn-anim1 absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-btn-anim1"></span>
                         <span className="animate-btn-anim2 absolute top-0 right-0 w-0.5 h-full bg-gradient-to-b from-transparent via-blue-500 to-transparent animate-btn-anim2"></span>
                         <span className="animate-btn-anim3 absolute bottom-0 right-0 w-full h-0.5 bg-gradient-to-l from-transparent via-blue-500 to-transparent animate-btn-anim3"></span>
                         <span className=" animate-btn-anim4 absolute bottom-0 left-0 w-0.5 h-full bg-gradient-to-t from-transparent via-blue-500 to-transparent animate-btn-anim4"></span>
                         {localize(lang, 'submit')}
                     </button>
+                    {/*  {message.text && (
+                        <div className={`message ${message.type}`}>
+                            {message.text}
+                        </div>
+                    )} */}
                 </form>
             </div>
-
+            <ToastContainer />
         </div>
     )
 }

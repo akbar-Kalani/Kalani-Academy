@@ -12,6 +12,7 @@ export default {
   male: "مرد",
   submit: "ارسال",
   decri: 'اگر دارین توضیح بدین؟',
+   wel: " خوش آمدی",
   countries: {
     Afghanistan: "افغانستان",
     Australia: "استرالیا",

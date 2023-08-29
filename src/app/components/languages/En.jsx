@@ -12,6 +12,7 @@ export default {
   male: 'Male',
   submit: 'Submit',
   decri: 'Description',
+  wel:"Welcome",
   countries: {
     Afghanistan: 'Afghanistan',
     Australia: 'Australia',

@@ -93,14 +93,14 @@ export const Validation = (data) => {
         delete errors.country;
     }
     if (!data.male) {
-        errors.male = "female is regulation"
+        errors.male = "Gender is regulation"
     } else {
         delete errors.male
     } 
 
 
     if (!data.female) {
-        errors.female = "male regulation"
+        errors.female = "Gender is regulation"
     } else {
         delete errors.female
     } 
