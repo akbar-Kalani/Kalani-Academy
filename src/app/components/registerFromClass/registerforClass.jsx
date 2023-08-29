@@ -9,7 +9,7 @@ import React from 'react'
 import "./style.css"
 import { localize } from './../translate/Translation'
 import { Validation } from './validation'
-///import sgMail from '@sendgrid/mail';
+
 export const RegisterforClass = () => {
 
     const [focus, setFocus] = useState({})
@@ -27,7 +27,7 @@ export const RegisterforClass = () => {
     };
 
     const [data, setData] = useState(initialFormData);
-    // console.log("length",Object.keys(data).length)
+    
     const [errors, setErrors] = useState({})
 
 
@@ -45,9 +45,7 @@ export const RegisterforClass = () => {
     }, [data]);
 
 
-
-    //  const sgMail = require('@sendgrid/mail'); 
-    //sgMail.setApiKey('YOUR_SENDGRID_API_KEY'); 
+; 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -67,16 +65,7 @@ export const RegisterforClass = () => {
                 if (response.ok) {
                     console.log("Data successfully sent to the API");
 
-                 /*    const msg = {
-                        to: 'user@example.com', // Replace with the user's email address
-                        from: 'your@example.com', // Replace with your email address
-                        subject: 'Registration Successful',
-                        text: 'Thank you for registering!',
-                        html: '<strong>Thank you for registering!</strong>',
-                    };
-
-                    await sgMail.send(msg);
- */
+               
                     setData(initialFormData);
                 } else {
                     console.log("Failed to send data to the API");
