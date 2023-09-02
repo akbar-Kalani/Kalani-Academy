@@ -66,7 +66,7 @@ export const RegisterforClass = () => {
                     console.log("Data successfully sent to the API");
 
                
-                    setData(initialFormData);
+                   /// setData(initialFormData);
                 } else {
                     console.log("Failed to send data to the API");
                     // Handle error cases
