@@ -46,37 +46,35 @@ export const RegisterforClass = () => {
 
 
 ; 
+const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    if (Object.keys(data).length === 0) {
+        console.log("Form data is empty");
+    } else {
+        try {
+            const response = await fetch('https://64cfe80affcda80aff52489d.mockapi.io/userData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
 
-        if (Object.keys(data).length === 0) {
-            console.log("Form data is empty");
-        } else {
-            try {
-                const response = await fetch('https://64cfe80affcda80aff52489d.mockapi.io/userData', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    console.log("Data successfully sent to the API");
-
-               
-                   /// setData(initialFormData);
-                } else {
-                    console.log("Failed to send data to the API");
-                    // Handle error cases
-                }
-            } catch (error) {
-                console.error("An error occurred:", error);
+            if (response.ok) {
+                console.log("Data successfully sent to the API");
+                alert("Data successfully sent "); // Show an alert
+                // Reset the form data if needed
+                // setData(initialFormData);
+            } else {
+                console.log("Failed to send data to the API");
+                // Handle error cases
             }
+        } catch (error) {
+            console.error("An error occurred:", error);
         }
-    };
-
+    }
+};
 
 
     const focusHandler = (event) => {
